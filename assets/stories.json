@@ -1,0 +1,136 @@
+[
+  {
+    "id": 1,
+    "title": "The Desert Knight",
+    "content_story": "A brave knight travels across the desert in search of a lost golden city and discovers wisdom hidden in the journey.",
+    "lastUpdate": 1715308800000,
+    "createDate": 1711939200000,
+    "parts": [
+      { "id": 101, "story_id": 1, "title": "The Departure", "content": "Khalid leaves his tribe after hearing about the legendary golden city.", "lastUpdate": 1712025600000, "createDate": 1712025600000 },
+      { "id": 102, "story_id": 1, "title": "The Mirage", "content": "He faces dehydration and sees a false oasis.", "lastUpdate": 1712112000000, "createDate": 1712112000000 },
+      { "id": 103, "story_id": 1, "title": "The Rescue", "content": "Khalid saves a caravan under attack.", "lastUpdate": 1712198400000, "createDate": 1712198400000 },
+      { "id": 104, "story_id": 1, "title": "The Betrayal", "content": "One of the caravan members is revealed as a spy.", "lastUpdate": 1712284800000, "createDate": 1712284800000 },
+      { "id": 105, "story_id": 1, "title": "The Blind Guide", "content": "A blind man becomes Khalid’s guide.", "lastUpdate": 1712371200000, "createDate": 1712371200000 },
+      { "id": 106, "story_id": 1, "title": "The Golden City", "content": "They discover a hidden city filled with knowledge.", "lastUpdate": 1712457600000, "createDate": 1712457600000 },
+      { "id": 107, "story_id": 1, "title": "The Return", "content": "Khalid returns home bringing wisdom.", "lastUpdate": 1712544000000, "createDate": 1712544000000 }
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Message in a Bottle",
+    "content_story": "A girl finds a mysterious message in a bottle that reveals secrets about her missing parents.",
+    "lastUpdate": 1718409600000,
+    "createDate": 1714521600000,
+    "parts": [
+      { "id": 201, "story_id": 2, "title": "The Bottle", "content": "Laila finds a green bottle on the beach.", "lastUpdate": 1714608000000, "createDate": 1714608000000 },
+      { "id": 202, "story_id": 2, "title": "The Secret", "content": "Her grandmother reveals hidden truths.", "lastUpdate": 1714694400000, "createDate": 1714694400000 },
+      { "id": 203, "story_id": 2, "title": "The Old House", "content": "A clue leads her to an abandoned house.", "lastUpdate": 1714780800000, "createDate": 1714780800000 },
+      { "id": 204, "story_id": 2, "title": "The Harbor", "content": "She travels to a harbor seeking answers.", "lastUpdate": 1714867200000, "createDate": 1714867200000 },
+      { "id": 205, "story_id": 2, "title": "The Truth", "content": "She learns her father faked his death.", "lastUpdate": 1714953600000, "createDate": 1714953600000 },
+      { "id": 206, "story_id": 2, "title": "Reunion", "content": "She finally meets her father again.", "lastUpdate": 1715040000000, "createDate": 1715040000000 }
+    ]
+  },
+  {
+    "id": 3,
+    "title": "The Palm Guardian",
+    "content_story": "An old man fights to protect his ancestral palm farm from being destroyed.",
+    "lastUpdate": 1721433600000,
+    "createDate": 1717200000000,
+    "parts": [
+      { "id": 301, "story_id": 3, "title": "The Farm", "content": "Old Salem protects his family palm farm.", "lastUpdate": 1717286400000, "createDate": 1717286400000 },
+      { "id": 302, "story_id": 3, "title": "The Notice", "content": "He receives a notice of land confiscation.", "lastUpdate": 1717372800000, "createDate": 1717372800000 },
+      { "id": 303, "story_id": 3, "title": "The Fight", "content": "His grandson helps him fight legally.", "lastUpdate": 1717459200000, "createDate": 1717459200000 },
+      { "id": 304, "story_id": 3, "title": "The Court", "content": "They win a temporary legal victory.", "lastUpdate": 1717545600000, "createDate": 1717545600000 },
+      { "id": 305, "story_id": 3, "title": "The Fire", "content": "Someone tries to burn the farm.", "lastUpdate": 1717632000000, "createDate": 1717632000000 },
+      { "id": 306, "story_id": 3, "title": "The Victory", "content": "The court protects the land permanently.", "lastUpdate": 1717718400000, "createDate": 1717718400000 }
+    ]
+  },
+  {
+    "id": 4,
+    "title": "Shadow of the Moon",
+    "content_story": "A student discovers her grandfather’s forgotten scientific legacy.",
+    "lastUpdate": 1722816000000,
+    "createDate": 1719792000000,
+    "parts": [
+      { "id": 401, "story_id": 4, "title": "Discovery", "content": "She finds old scientific notes.", "lastUpdate": 1719878400000, "createDate": 1719878400000 },
+      { "id": 402, "story_id": 4, "title": "Research", "content": "She investigates the lost theory.", "lastUpdate": 1719964800000, "createDate": 1719964800000 },
+      { "id": 403, "story_id": 4, "title": "Proof", "content": "She proves her grandfather’s work.", "lastUpdate": 1720051200000, "createDate": 1720051200000 },
+      { "id": 404, "story_id": 4, "title": "Recognition", "content": "The scientific community acknowledges it.", "lastUpdate": 1720137600000, "createDate": 1720137600000 }
+    ]
+  },
+  {
+    "id": 5,
+    "title": "Road to Damascus",
+    "content_story": "A chef searches for his grandmother’s lost recipe in Damascus.",
+    "lastUpdate": 1726099200000,
+    "createDate": 1722470400000,
+    "parts": [
+      { "id": 501, "story_id": 5, "title": "The Recipe", "content": "He loses his grandmother’s recipe.", "lastUpdate": 1722556800000, "createDate": 1722556800000 },
+      { "id": 502, "story_id": 5, "title": "The Journey", "content": "He travels to Damascus.", "lastUpdate": 1722643200000, "createDate": 1722643200000 },
+      { "id": 503, "story_id": 5, "title": "The Old Neighbor", "content": "He finds someone who knew his grandmother.", "lastUpdate": 1722729600000, "createDate": 1722729600000 },
+      { "id": 504, "story_id": 5, "title": "The Secret Ingredient", "content": "He discovers the missing spice.", "lastUpdate": 1722816000000, "createDate": 1722816000000 },
+      { "id": 505, "story_id": 5, "title": "The Taste", "content": "He recreates the perfect dish.", "lastUpdate": 1722902400000, "createDate": 1722902400000 }
+    ]
+  },
+  {
+    "id": 6,
+    "title": "The Watchmaker",
+    "content_story": "A craftsman discovers his grandfather’s hidden royal history.",
+    "lastUpdate": 1727740800000,
+    "createDate": 1725148800000,
+    "parts": [
+      { "id": 601, "story_id": 6, "title": "The Watch", "content": "He finds an old royal watch.", "lastUpdate": 1725235200000, "createDate": 1725235200000 },
+      { "id": 602, "story_id": 6, "title": "The Journal", "content": "His grandfather’s secret journal.", "lastUpdate": 1725321600000, "createDate": 1725321600000 },
+      { "id": 603, "story_id": 6, "title": "The Museum", "content": "Experts confirm its value.", "lastUpdate": 1725408000000, "createDate": 1725408000000 },
+      { "id": 604, "story_id": 6, "title": "The Legacy", "content": "He continues the craft.", "lastUpdate": 1725494400000, "createDate": 1725494400000 }
+    ]
+  },
+  {
+    "id": 7,
+    "title": "Song of the Mountain",
+    "content_story": "A singer revives forgotten mountain folk songs.",
+    "lastUpdate": 1730764800000,
+    "createDate": 1727740800000,
+    "parts": [
+      { "id": 701, "story_id": 7, "title": "Return", "content": "She returns to her village.", "lastUpdate": 1727827200000, "createDate": 1727827200000 },
+      { "id": 702, "story_id": 7, "title": "The Songs", "content": "She records old folk songs.", "lastUpdate": 1727913600000, "createDate": 1727913600000 },
+      { "id": 703, "story_id": 7, "title": "The Girls", "content": "She teaches young girls.", "lastUpdate": 1728000000000, "createDate": 1728000000000 },
+      { "id": 704, "story_id": 7, "title": "The Festival", "content": "They perform in a festival.", "lastUpdate": 1728086400000, "createDate": 1728086400000 }
+    ]
+  },
+  {
+    "id": 8,
+    "title": "The Lost Library",
+    "content_story": "An explorer discovers a hidden underground library filled with ancient knowledge.",
+    "lastUpdate": 1733011200000,
+    "createDate": 1730419200000,
+    "parts": [
+      { "id": 801, "story_id": 8, "title": "The Map", "content": "A mysterious map leads to ruins.", "lastUpdate": 1730505600000, "createDate": 1730505600000 },
+      { "id": 802, "story_id": 8, "title": "The Entrance", "content": "He finds a hidden door.", "lastUpdate": 1730592000000, "createDate": 1730592000000 },
+      { "id": 803, "story_id": 8, "title": "The Books", "content": "Ancient books fill the library.", "lastUpdate": 1730678400000, "createDate": 1730678400000 }
+    ]
+  },
+  {
+    "id": 9,
+    "title": "The Hidden Painter",
+    "content_story": "A girl discovers her father was a forgotten famous painter.",
+    "lastUpdate": 1736467200000,
+    "createDate": 1733011200000,
+    "parts": [
+      { "id": 901, "story_id": 9, "title": "The Painting", "content": "She finds hidden paintings.", "lastUpdate": 1733097600000, "createDate": 1733097600000 },
+      { "id": 902, "story_id": 9, "title": "The Gallery", "content": "Experts evaluate the art.", "lastUpdate": 1733184000000, "createDate": 1733184000000 }
+    ]
+  },
+  {
+    "id": 10,
+    "title": "The Time Letter",
+    "content_story": "A boy receives a letter from the future warning him about choices.",
+    "lastUpdate": 1738713600000,
+    "createDate": 1735689600000,
+    "parts": [
+      { "id": 1001, "story_id": 10, "title": "The Letter", "content": "A mysterious letter arrives.", "lastUpdate": 1735776000000, "createDate": 1735776000000 },
+      { "id": 1002, "story_id": 10, "title": "The Warning", "content": "It predicts his mistakes.", "lastUpdate": 1735862400000, "createDate": 1735862400000 },
+      { "id": 1003, "story_id": 10, "title": "The Choice", "content": "He changes his decisions.", "lastUpdate": 1735948800000, "createDate": 1735948800000 }
+    ]
+  }
+]

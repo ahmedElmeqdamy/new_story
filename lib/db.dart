@@ -47,11 +47,7 @@ class Db {
     FOREIGN KEY(story_id) REFERENCES stories(id) ON DELETE CASCADE
   );
 ''');
-      log(
-        'Tables created successfully',
-        name: 'db.dart',
-        stackTrace: StackTrace.current,
-      );
+      log('Tables created successfully', name: 'db.dart');
     } catch (e, st) {
       log(
         'table creation failed: ${e.toString()}',
@@ -61,6 +57,7 @@ class Db {
     }
   }
 
+  //this method is for fetch all stories from local db
   Future<List<Story>> fetchStories() async {
     try {
       final ResultSet resultSet = _db.select('SELECT * FROM stories');

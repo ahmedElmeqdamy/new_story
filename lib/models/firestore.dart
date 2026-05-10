@@ -16,6 +16,7 @@ class FirestoreHelper {
   // DocumentReference get storyRef => storiesRef.doc();
   // DocumentReference get partRef => partsRef.doc();
 
+  //this is for fetching a single story from firestore using its ID
   Future<void> getStoryById(String storyId) async {
     try {
       final story = await storiesRef
@@ -38,6 +39,11 @@ class FirestoreHelper {
       final QuerySnapshot storyQuerySnapshot;
       final QuerySnapshot partsQuerySnapshot;
 
+      //if (lastStoriesFetch != null)
+      //lastFetch = lastStoriesFetch!;
+      //}
+
+      //here
       if (lastStoriesFetch case final lastFetch?) {
         // LF 05/05/2026
         // LU 08/05/2026
@@ -53,11 +59,17 @@ class FirestoreHelper {
         partsQuerySnapshot = await partsRef.get();
       }
 
+      //______________________________________
+
+      //storyQuerySnapshot  lastUpdate
+      //partsQuerySnapshot  lastUpdate
+
       final allParts = partsQuerySnapshot.docs;
 
       final stories = <Story>[];
 
       for (final storyDoc in storyQuerySnapshot.docs) {
+
         final lastUpdate = storyDoc.get("lastUpdate");
 
         if (lastUpdate case final Timestamp lastUpdate) {

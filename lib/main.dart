@@ -95,24 +95,31 @@ class _StoriesListScreenState extends State<StoriesListScreen> {
         children: [
           // FETCHS DATA FROM OFFLINE DATABASE
           FloatingActionButton(
+            heroTag: 'db',
             onPressed: () async {
               // firestoreHelper.uploadStories(dummyStories);
               setState(() {
                 loading = true;
               });
+
+              //THIS FAB IS FOR FETCH ALL STORIES FROM LOCAL DATABASE
               final storiesList = await db.fetchStories();
               stories = stories
                 ..addAll(
                   Map.fromIterable(storiesList, key: (story) => story.id),
                 );
+
               await Future.delayed(Duration(milliseconds: 500));
               loading = false;
               setState(() {});
             },
-            child: Icon(Icons.storage_rounded),
+
+            child: Text("db"),
+            // Icon(Icons.storage_rounded),
           ),
           // FETCHS DATA FROM FIRESTORE
           FloatingActionButton(
+            heroTag: 'fb',
             onPressed: () async {
               // firestoreHelper.uploadStories(dummyStories);
               setState(() {
@@ -126,7 +133,8 @@ class _StoriesListScreenState extends State<StoriesListScreen> {
               loading = false;
               setState(() {});
             },
-            child: Icon(Icons.refresh_rounded),
+            child: Text("fb"),
+            // Icon(Icons.refresh_rounded),
           ),
         ],
       ),

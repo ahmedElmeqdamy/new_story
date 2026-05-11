@@ -61,18 +61,18 @@ class FirestoreHelper {
 
       //______________________________________
 
-      //storyQuerySnapshot  lastUpdate
-      //partsQuerySnapshot  lastUpdate
+      //storyQuerySnapshot  lastUpdate al stories al lsa mdafa aw m3mlha updated
+      //partsQuerySnapshot  lastUpdate al parts al lsa mdafa aw m3mlha updated
 
       final allParts = partsQuerySnapshot.docs;
-
       final stories = <Story>[];
 
       for (final storyDoc in storyQuerySnapshot.docs) {
-
+        //lastUpdate dah a5er t7des
         final lastUpdate = storyDoc.get("lastUpdate");
-
+        // hal lastUpdate = final Timpstamp
         if (lastUpdate case final Timestamp lastUpdate) {
+          //hal awel mara tft7 al app
           if (lastStoriesFetch == null) {
             lastStoriesFetch = lastUpdate;
           } else if (lastStoriesFetch case final lf?) {

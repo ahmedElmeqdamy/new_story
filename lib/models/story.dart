@@ -25,11 +25,18 @@ class Story {
   });
   //we use this function to convert the database row to a story object
   factory Story.fromMap(Map<String, dynamic> map, {required DataSrc src}) {
+    // final rawParts = map["parts"];
     return Story(
       id: map['id'],
       title: map['title'],
       contentStory: map['contentStory'],
       parts: [],
+      // parts: switch (rawParts) {
+      //   Iterable<Part> parts => parts.toList(),
+      //   Iterable<Map<String, dynamic>> partsMap =>
+      //     partsMap.map((partMap) => Part.fromMap(partMap, src: src)).toList(),
+      //   _ => [],
+      // },
       lastUpdate: tryGetDateTimeFrom(map['lastUpdate']),
       createDate: tryGetDateTimeFrom(map['createDate']),
       src: src,

@@ -25,7 +25,7 @@ class Part {
     required this.createDate,
     required this.src,
   });
-
+  //this method is for converting a map to a part
   factory Part.fromMap(Map<String, dynamic> map, {required DataSrc src}) {
     return Part(
       id: map['id'],

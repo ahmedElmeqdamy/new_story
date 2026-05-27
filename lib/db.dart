@@ -83,6 +83,7 @@ class Db {
   }
 
   Future<void> insertOrUpdateStory(Story story) async {
+    await Future.delayed(Duration(milliseconds: 250));
     try {
       final params = [
         'id',
@@ -140,5 +141,13 @@ class Db {
 
   void close() {
     _db.close();
+  }
+
+  void removeStory(String id) {
+    // TASK1: implement deleting story from database
+  }
+
+  void removePartsOf(String id) {
+    // TASK2: implement deleting story from database
   }
 }

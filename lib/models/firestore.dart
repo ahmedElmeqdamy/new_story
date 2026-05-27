@@ -6,15 +6,13 @@ import 'package:new_story/main.dart';
 import 'package:new_story/models/part.dart';
 import 'package:new_story/models/story.dart';
 import 'package:new_story/shared.dart';
+import 'package:new_story/shared_prefrences.dart';
 
 class FirestoreHelper {
   final _firestore = FirebaseFirestore.instance;
 
   CollectionReference get storiesRef => _firestore.collection('stories');
   CollectionReference get partsRef => _firestore.collection('parts');
-
-  // DocumentReference get storyRef => storiesRef.doc();
-  // DocumentReference get partRef => partsRef.doc();
 
   //this is for fetching a single story from firestore using its ID
   Future<void> getStoryById(String storyId) async {
@@ -39,15 +37,7 @@ class FirestoreHelper {
       final QuerySnapshot storyQuerySnapshot;
       final QuerySnapshot partsQuerySnapshot;
 
-      //if (lastStoriesFetch != null)
-      //lastFetch = lastStoriesFetch!;
-      //}
-
-      //here
       if (lastStoriesFetch case final lastFetch?) {
-        // LF 05/05/2026
-        // LU 08/05/2026
-        // LF < LU
         storyQuerySnapshot = await storiesRef
             .where("lastUpdate", isGreaterThan: lastFetch)
             .get();
@@ -55,12 +45,10 @@ class FirestoreHelper {
             .where("lastUpdate", isGreaterThan: lastFetch)
             .get();
       } else {
+        log('firsty time', name: 'first time to open app');
         storyQuerySnapshot = await storiesRef.get();
         partsQuerySnapshot = await partsRef.get();
       }
-
-      //______________________________________
-
       //storyQuerySnapshot  lastUpdate al stories al lsa mdafa aw m3mlha updated
       //partsQuerySnapshot  lastUpdate al parts al lsa mdafa aw m3mlha updated
 
@@ -68,60 +56,68 @@ class FirestoreHelper {
       final stories = <Story>[];
 
       for (final storyDoc in storyQuerySnapshot.docs) {
+        // if (storyDoc["isDeleted"] case final bool isDeleted when isDeleted) {
+        //   db.removeStory(storyDoc.id);
+        //   continue;
+        // }
         //lastUpdate dah a5er t7des
-        final lastUpdate = storyDoc.get("lastUpdate");
+        final lastUpdateFromFirestore = storyDoc.get("lastUpdate");
         // hal lastUpdate = final Timpstamp
-        if (lastUpdate case final Timestamp lastUpdate) {
+        if (lastUpdateFromFirestore
+            case final Timestamp lastUpdateFromFirestore) {
           //hal awel mara tft7 al app
           if (lastStoriesFetch == null) {
-            lastStoriesFetch = lastUpdate;
-          } else if (lastStoriesFetch case final lf?) {
-            if (lastUpdate.millisecondsSinceEpoch > lf.millisecondsSinceEpoch) {
-              lastStoriesFetch = lastUpdate;
+            lastStoriesFetch = lastUpdateFromFirestore;
+          } else if (lastStoriesFetch case final lastFetch?) {
+            if (lastUpdateFromFirestore.millisecondsSinceEpoch >
+                lastFetch.millisecondsSinceEpoch) {
+              lastStoriesFetch = lastUpdateFromFirestore;
             }
           }
-        }
+        } //5421047
 
         log(
           "lastStoriesFetch: ${lastStoriesFetch?.toDate().toIso8601String()}",
         );
 
-        final storyData = storyDoc.data() as Map<String, dynamic>;
-
-        storyData["id"] = storyDoc.id;
-
         final storyParts = <Part>[];
 
         for (final partDoc in allParts) {
-          if (partDoc["storyId"] != storyDoc.id) continue;
-          storyParts.add(
-            Part.fromMap(
-              (partDoc.data() as Map<String, dynamic>)..["id"] = partDoc.id,
-              src: .online,
-            ),
-          );
+          if (partDoc["storyId"] == storyDoc.id) {
+            final partMap = partDoc.data() as Map<String, dynamic>;
+            partMap["id"] = partDoc.id;
+            storyParts.add(Part.fromMap(partMap, src: .online));
+          }
         }
 
         // PLEASE CHECK LATER (PERFORMANCE)
         log("--->>>> allParts: ${allParts.length}");
+
         allParts.removeWhere(
           (partDoc) => storyParts.any((part) => part.id == partDoc.id),
         );
 
-        log("[${storyDoc.id}] storyParts: ${storyParts.length}");
+        final storyData = storyDoc.data() as Map<String, dynamic>;
+        storyData["id"] = storyDoc.id;
 
-        stories.add(
-          Story.fromMap(storyData, src: .online).copyWith(parts: storyParts),
-        );
+        final story = Story.fromMap(
+          storyData,
+          src: .online,
+        ).copyWith(parts: storyParts);
+
+        stories.add(story);
+
+        db.insertOrUpdateStory(story);
+      }
+
+      // Save lastStoriesFetch to SharedPreferences
+      if (lastStoriesFetch != null) {
+        await SharedPrefsHelper.saveLastFetch(lastStoriesFetch!.toDate());
       }
 
       log(
         "LEN: ${stories.length.toString()}\n - ${stories.map((story) => story.toString()).join("\n - ")}",
       );
-
-      for (final story in stories) {
-        await db.insertOrUpdateStory(story);
-      }
 
       return stories;
     } catch (e, st) {
@@ -129,6 +125,13 @@ class FirestoreHelper {
       return [];
     }
   }
+
+  // Future<bool> fetchDeletedStories() {
+  //   final ids = ["sasdasdsa", "asdasfasf1r1"];
+  //   for (var id in ids) {
+  //     db.removeStory(id);
+  //   }
+  // }
 
   Future<bool> uploadStories(List<Story> stories) async {
     try {
@@ -182,6 +185,7 @@ class FirestoreHelper {
   Future<Part?> uploadPart(Part part) async {
     try {
       if (part.hasValidId) {
+        //part has id cause it is update
         await partsRef
             .doc(part.id)
             .update(

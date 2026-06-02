@@ -13,21 +13,12 @@ Future<void> getDataEvery10S() async {
 
   log('Fetched ${storiesList.length} stories', name: 'Timer');
 
-  stories.addAll(
-    Map.fromIterable(
-      storiesList,
-      key: (story) => story.id,
-    ),
-  );
+  stories.addAll(Map.fromIterable(storiesList, key: (story) => story.id));
 }
 
 void initialize() {
-  storiesTimer = Timer.periodic(
-    const Duration(seconds: 10),
-    (_) async {
-      await getDataEvery10S();
-    },
-  );
+  storiesTimer = Timer.periodic(const Duration(seconds: 10), (_) async {
+    await getDataEvery10S();
+  });
 }
-
-
+//01058418059001

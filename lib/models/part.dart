@@ -29,7 +29,7 @@ class Part {
   factory Part.fromMap(Map<String, dynamic> map, {required DataSrc src}) {
     return Part(
       id: map['id'],
-      storyId: map['storyId'],
+      storyId: map['storyId'] ?? map['story_id']?.toString(),
       storyRef: map['storyRef'],
       title: map['title'],
       content: map['content'],

@@ -6,13 +6,6 @@ import 'package:new_story/models/firestore.dart';
 import 'package:new_story/shared_prefrences.dart';
 import 'package:new_story/stories_list_screen.dart';
 
-// TASKS
-// [1] SAVE LAST FETCH TIME IN SHAREDPREFERENCES [AS MILLISECONDS]
-//     - SAVE WHEN WE FETCH FROM FIRESTORE
-//     - GET ON APP START
-// [2] FETCH ON APP STARTUP (AFTER RETREVING THE LASTFETCH FROM SHAREDPREFERENCES)
-// [3] FETCH EVERY 30 MINUTES IF THE APP IS OPEN
-// [4] FIX FAB, UPGRADE UI
 late Db db;
 late FirestoreHelper firestoreHelper;
 

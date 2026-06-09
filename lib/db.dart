@@ -1,6 +1,7 @@
 import 'dart:core';
 import 'dart:developer';
 
+import 'package:new_story/models/data_src.dart';
 import 'package:new_story/models/part.dart';
 import 'package:new_story/models/story.dart';
 import 'package:path/path.dart';
@@ -43,10 +44,11 @@ class Db {
     title TEXT,
     content TEXT,
     lastUpdate INTEGER,
-    createDate INTEGER,
-    FOREIGN KEY(story_id) REFERENCES stories(id) ON DELETE CASCADE
+    createDate INTEGER
   );
 ''');
+      //    FOREIGN KEY(story_id) REFERENCES stories(id) ON DELETE CASCADE
+
       log('Tables created successfully', name: 'db.dart');
     } catch (e, st) {
       log(
@@ -62,14 +64,20 @@ class Db {
     try {
       final ResultSet resultSet = _db.select('SELECT * FROM stories');
       log("STORIES FROM DATA BASE: ${resultSet.length}");
-      return resultSet.map((row) => Story.fromMap(row, src: .offline)).toList();
+
+      final futures = resultSet.map((row) async {
+        final story = Story.fromMap(row, src: .offline);
+        final parts = await fetchParts(story.id!);
+        return story.copyWith(parts: parts);
+      }).toList();
+      return await Future.wait(futures);
     } catch (error) {
       log('fetch stories failed: ${error.toString()}');
       return [];
     }
   }
 
-  Future<List<Part>> fetchParts(int storyId) async {
+  Future<List<Part>> fetchParts(String storyId) async {
     try {
       final ResultSet resultSet = _db.select(
         'SELECT * FROM parts WHERE story_id = ?',
@@ -143,11 +151,22 @@ class Db {
     _db.close();
   }
 
-  void removeStory(String id) {
-    // TASK1: implement deleting story from database
+  void removePartsOf(String storyId) {
+    // TASK2: implement deleting story from database
+    try {
+      _db.execute('DELETE FROM parts WHERE story_id = ?', [storyId]);
+    } catch (e) {
+      log('delete parts failed: ${e.toString()}');
+    }
   }
 
-  void removePartsOf(String id) {
-    // TASK2: implement deleting story from database
+  void removeStory(String id) {
+    // TASK1: implement deleting story from database
+    try {
+      _db.execute('DELETE FROM stories WHERE id = ?', [id]);
+      removePartsOf(id);
+    } catch (e) {
+      log('delete story failed: ${e.toString()}');
+    }
   }
 }

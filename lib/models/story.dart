@@ -29,7 +29,7 @@ class Story {
     return Story(
       id: map['id'],
       title: map['title'],
-      contentStory: map['contentStory'],
+      contentStory: map['contentStory'] ?? map['content_story'],
       parts: [],
       // parts: switch (rawParts) {
       //   Iterable<Part> parts => parts.toList(),

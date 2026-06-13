@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:new_story/data/stories.dart';
 import 'package:new_story/main.dart';
 import 'package:new_story/models/story_parts.dart';
+import 'package:new_story/repository/story_repository.dart';
 import 'package:new_story/shared_prefrences.dart';
 
 class StoriesListScreen extends StatefulWidget {
@@ -13,6 +14,10 @@ class StoriesListScreen extends StatefulWidget {
 
 class _StoriesListScreenState extends State<StoriesListScreen> {
   bool loading = false;
+  final storyRepository = StoryRepository(
+    localDb: db,
+    remoteDb: firestoreHelper,
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -46,6 +51,14 @@ class _StoriesListScreenState extends State<StoriesListScreen> {
                             ),
                           );
                         },
+                        trailing: IconButton(
+                          icon: Icon(Icons.delete),
+                          onPressed: () {
+                            storyRepository.deleteStory(story.id!);
+                            stories.remove(story.id);
+                            setState(() {});
+                          },
+                        ),
                       );
                     },
                     itemCount: stories.length,

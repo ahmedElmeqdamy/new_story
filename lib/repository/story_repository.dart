@@ -9,8 +9,8 @@ class StoryRepository {
   final FirestoreHelper _remoteDb;
 
   StoryRepository({required Db localDb, required FirestoreHelper remoteDb})
-      : _localDb = localDb,
-        _remoteDb = remoteDb;
+    : _localDb = localDb,
+      _remoteDb = remoteDb;
 
   /// Fetches stories using offline-first strategy:
   /// 1. Returns local data immediately if available
@@ -19,9 +19,7 @@ class StoryRepository {
   ///
   /// If local DB is empty, fetches directly from Firestore,
   /// saves to local, and returns the result.
-  Future<List<Story>> fetchStories({
-    Function(List<Story>)? onUpdate,
-  }) async {
+  Future<List<Story>> fetchStories({Function(List<Story>)? onUpdate}) async {
     // Step 1: Try local database first (fast, offline)
     final localStories = await _localDb.fetchStories();
 
@@ -83,9 +81,16 @@ class StoryRepository {
   }
 
   /// Saves a list of stories (with their parts) to the local database
+
   Future<void> _saveToLocalDb(List<Story> stories) async {
     for (final story in stories) {
       await _localDb.insertOrUpdateStory(story);
     }
+  }
+
+  void deleteStory(String storyId) async {
+    _localDb.removePartsOf(storyId);
+    _localDb.removeStory(storyId);
+    await _remoteDb.addDeletedStory(storyId);
   }
 }

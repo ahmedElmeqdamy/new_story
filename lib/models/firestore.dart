@@ -23,9 +23,9 @@ class FirestoreHelper {
           .timeout(Duration(seconds: 5));
       log(story.data().toString());
     } on TimeoutException catch (e, st) {
-      log("getStoryById.TimeoutException: $e", error: e, stackTrace: st);
+      log("Request timed out after 5 seconds", error: e, stackTrace: st);
     } on FirebaseException catch (e, st) {
-      log("getStoryById.FirebaseException: $e", error: e, stackTrace: st);
+      log("Firebase Error: ${e.message}", error: e, stackTrace: st);
     } catch (e, st) {
       log("getStoryById.Exception: $e", error: e, stackTrace: st);
     }
@@ -126,13 +126,6 @@ class FirestoreHelper {
     }
   }
 
-  // Future<bool> fetchDeletedStories() {
-  //   final ids = ["sasdasdsa", "asdasfasf1r1"];
-  //   for (var id in ids) {
-  //     db.removeStory(id);
-  //   }
-  // }
-
   Future<bool> uploadStories(List<Story> stories) async {
     try {
       for (final story in stories) {
@@ -208,6 +201,23 @@ class FirestoreHelper {
     } catch (e, st) {
       log("uploadPart.error", error: e, stackTrace: st);
       return null;
+    }
+  }
+
+  //this method is to add deleted story to firestore
+  Future<void> addDeletedStory(String storyId) async {
+    try {
+      final docRef = FirebaseFirestore.instance
+          .collection('deleted_items')
+          .doc('stories');
+
+      await docRef.set({
+        'ids': FieldValue.arrayUnion([storyId]),
+      }, SetOptions(merge: true));
+
+      log('Deleted story added to Firestore');
+    } catch (e) {
+      log('Error adding deleted story: $e');
     }
   }
 }
